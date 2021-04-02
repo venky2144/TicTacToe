@@ -35,4 +35,9 @@ public class TicTacToeTest {
 		assertThat(ticTac.getCurrentPlayer(), CoreMatchers.is('O'));
 	}
 
+	@Test
+	public void shouldReturnTrueWhenSelectedPositionisEmptyAndNotOccupiedByAnyPlayer() {
+
+		assertThat(ticTac.checkSelectedPositionIsEmpty(0, 0), CoreMatchers.is(true));
+	}
 }
