@@ -1,9 +1,12 @@
 package com.bnp.kata.tictactoe;
 
 public class TicTacToe {
-	private char[][] board = new char[3][3];
+	private static final char THREE = 3;
+	private static final char PLAYER_X = 'X';
+	private static final char PLAYER_O = 'O';
+	private char[][] board = new char[THREE][THREE];
 	private char currentPlayer;
-
+    
 	public void play(int row, int column, char inputChar) {
 		board[row][column] = inputChar;
 
@@ -16,11 +19,11 @@ public class TicTacToe {
 	}
 
 	public char getNextPlayer() {
-		if ('X' == currentPlayer) {
+		if (PLAYER_X == currentPlayer) {
 
-			return 'O';
+			return PLAYER_O;
 		} else {
-			return 'X';
+			return PLAYER_X;
 		}
 	}
 

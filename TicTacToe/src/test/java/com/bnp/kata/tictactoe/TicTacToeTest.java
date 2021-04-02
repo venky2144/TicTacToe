@@ -3,12 +3,21 @@ package com.bnp.kata.tictactoe;
 import static org.junit.Assert.assertThat;
 
 import org.hamcrest.CoreMatchers;
+import org.junit.Before;
 import org.junit.Test;
 
 public class TicTacToeTest {
+
+	TicTacToe ticTac;
+
+	@Before
+	public void setUp() {
+		ticTac = new TicTacToe();
+	}
+
 	@Test
 	public void playerPlaceXInBoard() {
-		TicTacToe ticTac = new TicTacToe();
+
 		ticTac.play(1, 1, 'X');
 
 		assertThat(ticTac.getPosition(1, 1), CoreMatchers.is('X'));
@@ -16,7 +25,6 @@ public class TicTacToeTest {
 
 	@Test
 	public void playersShouldPlayAlternatively() {
-		TicTacToe ticTac = new TicTacToe();
 
 		ticTac.addPlayer(0, 0);
 
