@@ -16,28 +16,24 @@ public class TicTacToeTest {
 	}
 
 	@Test
-	public void playerPlaceXInBoard() {
+	public void playerPlaceXInBoard() throws Exception {
 
-		ticTac.play(1, 1, 'X');
+		ticTac.addPlayer(1, 1);
 
-		assertThat(ticTac.getPosition(1, 1), CoreMatchers.is('X'));
+		assertThat(ticTac.getPlayerPosition(1, 1), CoreMatchers.is('X'));
 	}
 
 	@Test
 	public void playersShouldPlayAlternatively() {
 
-		ticTac.addPlayer(0, 0);
+		Board board = new Board();
+		board.addPlayer(0, 0);
 
-		assertThat(ticTac.getCurrentPlayer(), CoreMatchers.is('X'));
+		assertThat(board.getCurrentPlayer(), CoreMatchers.is('X'));
 
-		ticTac.addPlayer(1, 1);
+		board.addPlayer(1, 1);
 
-		assertThat(ticTac.getCurrentPlayer(), CoreMatchers.is('O'));
+		assertThat(board.getCurrentPlayer(), CoreMatchers.is('O'));
 	}
 
-	@Test
-	public void shouldReturnTrueWhenSelectedPositionisEmptyAndNotOccupiedByAnyPlayer() {
-
-		assertThat(ticTac.checkSelectedPositionIsEmpty(0, 0), CoreMatchers.is(true));
-	}
 }
