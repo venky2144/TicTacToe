@@ -45,17 +45,22 @@ public class TicTacToeTest {
 	@Test(expected = Exception.class)
 	public void shouldThroughExceptionWhenUserTryToFillAlreadyFilledPosition() throws Exception {
 
-		TicTacToe ticTac = new TicTacToe();
 		ticTac.addPlayer(2, 0);
 		ticTac.addPlayer(2, 0);
 
 	}
 
 	@Test
-	public void shouldReturn() {
+	public void shouldReturnTrueWhenThePlayerGivenCorrectInputData() {
 		Board board = new Board();
-		assertThat(board.validateuserInputData(2,2), CoreMatchers.is(true));
+		assertThat(board.validateuserInputData(2,0), CoreMatchers.is(true));
 
 	}
-
+	
+	@Test(expected=Exception.class)
+	public void shouldReturnExceptionWhenThePlayerGivenInCorrectInputData() throws Exception {
+		ticTac.addPlayer(2, 0);
+		ticTac.addPlayer(3, 0);
+		
+	}
 }
