@@ -51,13 +51,18 @@ public class Board {
 		for (int row = 0; row < 3; row++) {
 
 			if ((board[row][0] != '\0') && (board[row][0] == board[row][1]) && (board[row][1] == board[row][2])) {
-				return true;
+				if (checkRowColumnContent(board[row][0], board[row][1], board[row][2]))
+					return true;
 			}
 		}
 		return false;
 
 	}
 
+	private boolean checkRowColumnContent(char c1, char c2, char c3) {
 
+		return ((c1 != '\0') && (c1 == c2) && (c2 == c3));
+
+	}
 
 }
