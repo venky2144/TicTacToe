@@ -97,5 +97,18 @@ public class Board {
 		}
 		return isFull;
 	}
+	
+	public void printBoard() {
+		System.out.println("-------------");
+
+		for (int row = 0; row < THREE; row++) {
+			System.out.print("| ");
+			for (int column = 0; column < 3; column++) {
+				System.out.print(board[row][column] + " | ");
+			}
+			System.out.println();
+			System.out.println("-------------");
+		}
+	}
 
 }

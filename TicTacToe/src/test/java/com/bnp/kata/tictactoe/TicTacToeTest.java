@@ -155,9 +155,9 @@ public class TicTacToeTest {
 		assertThat(ticTac.addPlayer(0, 2), CoreMatchers.is("O is Winner of the Game"));
 
 	}
+
 	@Test
-	public void declareGameDrawWhenBoardIsFilledAndthereIsNoWinConditions() throws Exception
-	{
+	public void declareGameDrawWhenBoardIsFilledAndthereIsNoWinConditions() throws Exception {
 		ticTac.addPlayer(1, 1);
 		ticTac.addPlayer(0, 2);
 		ticTac.addPlayer(1, 2);
@@ -166,13 +166,19 @@ public class TicTacToeTest {
 		ticTac.addPlayer(2, 2);
 		ticTac.addPlayer(2, 1);
 		ticTac.addPlayer(0, 1);
-		assertThat(ticTac.addPlayer(2,0), CoreMatchers.is("The Game is Draw"));
+		assertThat(ticTac.addPlayer(2, 0), CoreMatchers.is("The Game is Draw"));
 
-		
-
-		
 	}
 
+	@Test
+	public void checkPrintBoard() throws Exception
+
+	{
+		board.addPlayer(1, 1);
+		board.addPlayer(0, 2);
+		board.addPlayer(1, 2);
+		board.printBoard();
+	}
 }
 
 
