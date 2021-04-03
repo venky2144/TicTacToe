@@ -63,8 +63,7 @@ public class Board {
 
 		for (int column = 0; column < 3; column++) {
 
-			if ((board[column][0] != '\0') && (board[0][column] == board[1][column])
-					&& (board[1][column] == board[2][column])) {
+			if ((board[column][0] != '\0') && (board[0][column] == board[1][column]) && (board[1][column] == board[2][column])) {
 				if (checkRowColumnContent(board[0][column], board[1][column], board[2][column]))
 					return true;
 			}
@@ -72,7 +71,11 @@ public class Board {
 		return false;
 
 	}
-	
+
+	public boolean checkDiagonalsForWin() {
+		return ((checkRowColumnContent(board[0][0], board[1][1], board[2][2]) == true)|| (checkRowColumnContent(board[0][2], board[1][1], board[2][0]) == true));
+	}
+
 	private boolean checkRowColumnContent(char c1, char c2, char c3) {
 
 		return ((c1 != '\0') && (c1 == c2) && (c2 == c3));

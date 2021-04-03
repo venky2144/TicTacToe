@@ -65,7 +65,7 @@ public class TicTacToeTest {
 	}
 
 	@Test
-	public void shouldReturnTrueIfAnyHorizontalRowsIsSame() throws Exception {
+	public void shouldReturnTrueIfAnyHorizontalRowsAreSame() throws Exception {
 		Board board = new Board();
 		board.addPlayer(0, 0);
 		board.addPlayer(2, 1);
@@ -74,10 +74,11 @@ public class TicTacToeTest {
 		board.addPlayer(0, 2);
 
 		assertThat(board.checkRowsForWin(), CoreMatchers.is(true));
-        
+
 	}
+
 	@Test
-	public void shouldReturnTurnIfAnyVerticalRowsIsSame() throws Exception {
+	public void shouldReturnTrueIfAnyVerticalRowsAreSame() throws Exception {
 		Board board = new Board();
 		board.addPlayer(0, 0);
 		board.addPlayer(2, 2);
@@ -86,6 +87,26 @@ public class TicTacToeTest {
 		board.addPlayer(2, 0);
 
 		assertThat(board.checkColumnsForWin(), CoreMatchers.is(true));
-        
+
+	}
+
+	@Test
+	public void shouldReturnTrueIfAnyDiagonalsPositionsAreSame() throws Exception {
+		Board leftDiagonalCheck = new Board();
+		leftDiagonalCheck.addPlayer(0, 0);
+		leftDiagonalCheck.addPlayer(1, 2);
+		leftDiagonalCheck.addPlayer(1, 1);
+		leftDiagonalCheck.addPlayer(2, 1);
+		leftDiagonalCheck.addPlayer(2, 2);
+		assertThat(leftDiagonalCheck.checkDiagonalsForWin(), CoreMatchers.is(true));
+
+		Board rightDiagonalCheck = new Board();
+		rightDiagonalCheck.addPlayer(0, 2);
+		rightDiagonalCheck.addPlayer(0, 0);
+		rightDiagonalCheck.addPlayer(1, 1);
+		rightDiagonalCheck.addPlayer(1, 2);
+		rightDiagonalCheck.addPlayer(2, 0);
+		assertThat(rightDiagonalCheck.checkDiagonalsForWin(), CoreMatchers.is(true));
+
 	}
 }
