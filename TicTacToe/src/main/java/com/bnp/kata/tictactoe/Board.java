@@ -59,6 +59,20 @@ public class Board {
 
 	}
 
+	boolean checkColumnsForWin() {
+
+		for (int column = 0; column < 3; column++) {
+
+			if ((board[column][0] != '\0') && (board[0][column] == board[1][column])
+					&& (board[1][column] == board[2][column])) {
+				if (checkRowColumnContent(board[0][column], board[1][column], board[2][column]))
+					return true;
+			}
+		}
+		return false;
+
+	}
+	
 	private boolean checkRowColumnContent(char c1, char c2, char c3) {
 
 		return ((c1 != '\0') && (c1 == c2) && (c2 == c3));
