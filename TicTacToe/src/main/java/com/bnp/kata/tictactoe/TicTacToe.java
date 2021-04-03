@@ -18,18 +18,28 @@ public class TicTacToe {
 			throw new Exception("The given position is occupied by another player");
 		}
 		board.addPlayer(row, column);
-		if (board.checkRowsForWin()) {
-			String winner= String.valueOf(board.getCurrentPlayer());
-			return winner+" is the Winner!";
-			 
+		String gameResult;
+		if (checkWinner()) {
+			String winner = String.valueOf(board.getCurrentPlayer());
+			gameResult = winner + " is Winner of the Game";
+		} else if (isGameDraw()) {
+			gameResult = "The Game is Draw";
+		} else {
+			gameResult = "Game Continues";
 		}
-		return "Game Continues";
+		return gameResult;
 	}
 
 	public char getPlayerPosition(int row, int column) {
 		return board.getPosition(row, column);
 	}
-	
-	
+
+	public boolean checkWinner() {
+		return board.checkColumnsForWin() || board.checkRowsForWin() || board.checkDiagonalsForWin();
+	}
+
+	public boolean isGameDraw() {
+		return board.checkIfBoardFullyOccupied();
+	}
 
 }

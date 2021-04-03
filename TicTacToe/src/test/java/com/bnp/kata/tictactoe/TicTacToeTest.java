@@ -124,5 +124,16 @@ public class TicTacToeTest {
 		assertThat(board.checkIfBoardFullyOccupied(), CoreMatchers.is(true));
 
 	}
+	
+	@Test
+	public void shouldDeclareWinnerIfAnyHorizontalMatchOccurOnTheBoard() throws Exception {
+		ticTac.addPlayer(0, 0);
+		ticTac.addPlayer(2, 1);
+		ticTac.addPlayer(0, 1);
+		ticTac.addPlayer(1, 2);
+		assertThat(ticTac.addPlayer(0, 2), CoreMatchers.is("X is Winner of the Game"));
+
+	}
+
 }
 
