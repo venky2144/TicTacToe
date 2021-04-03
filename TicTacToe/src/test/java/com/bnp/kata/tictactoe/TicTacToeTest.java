@@ -9,10 +9,13 @@ import org.junit.Test;
 public class TicTacToeTest {
 
 	TicTacToe ticTac;
+	Board board;
 
 	@Before
 	public void setUp() {
 		ticTac = new TicTacToe();
+		board=new Board();
+		
 	}
 
 	@Test
@@ -26,19 +29,15 @@ public class TicTacToeTest {
 	@Test
 	public void playersShouldPlayAlternatively() {
 
-		Board board = new Board();
 		board.addPlayer(0, 0);
-
 		assertThat(board.getCurrentPlayer(), CoreMatchers.is('X'));
-
 		board.addPlayer(1, 1);
-
 		assertThat(board.getCurrentPlayer(), CoreMatchers.is('O'));
 	}
 
 	@Test
 	public void shouldReturnTrueWhenSelectedPositionisEmptyAndNotOccupiedByAnyPlayer() {
-		Board board = new Board();
+
 		assertThat(board.checkSelectedPositionIsEmpty(0, 0), CoreMatchers.is(true));
 	}
 
@@ -52,7 +51,7 @@ public class TicTacToeTest {
 
 	@Test
 	public void shouldReturnTrueWhenThePlayerGivenCorrectInputData() {
-		Board board = new Board();
+
 		assertThat(board.validateuserInputData(2, 0), CoreMatchers.is(true));
 
 	}
@@ -66,7 +65,7 @@ public class TicTacToeTest {
 
 	@Test
 	public void shouldReturnTrueIfAnyHorizontalRowsAreSame() throws Exception {
-		Board board = new Board();
+
 		board.addPlayer(0, 0);
 		board.addPlayer(2, 1);
 		board.addPlayer(0, 1);
@@ -79,7 +78,7 @@ public class TicTacToeTest {
 
 	@Test
 	public void shouldReturnTrueIfAnyVerticalRowsAreSame() throws Exception {
-		Board board = new Board();
+
 		board.addPlayer(0, 0);
 		board.addPlayer(2, 2);
 		board.addPlayer(1, 0);
@@ -109,4 +108,21 @@ public class TicTacToeTest {
 		assertThat(rightDiagonalCheck.checkDiagonalsForWin(), CoreMatchers.is(true));
 
 	}
+	
+	@Test
+	public void checkIsBoardFullyOccupied() {
+
+		board.addPlayer(1, 1);
+		board.addPlayer(0, 2);
+		board.addPlayer(1, 2);
+		board.addPlayer(1, 0);
+		board.addPlayer(0, 0);
+		board.addPlayer(2, 2);
+		board.addPlayer(2, 1);
+		board.addPlayer(0, 1);
+		board.addPlayer(2, 0);
+		assertThat(board.checkIfBoardFullyOccupied(), CoreMatchers.is(true));
+
+	}
 }
+
