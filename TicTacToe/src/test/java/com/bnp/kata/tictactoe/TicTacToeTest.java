@@ -35,19 +35,26 @@ public class TicTacToeTest {
 
 		assertThat(board.getCurrentPlayer(), CoreMatchers.is('O'));
 	}
-	
+
 	@Test
 	public void shouldReturnTrueWhenSelectedPositionisEmptyAndNotOccupiedByAnyPlayer() {
 		Board board = new Board();
 		assertThat(board.checkSelectedPositionIsEmpty(0, 0), CoreMatchers.is(true));
 	}
-	
-	@Test(expected=Exception.class)
+
+	@Test(expected = Exception.class)
 	public void shouldThroughExceptionWhenUserTryToFillAlreadyFilledPosition() throws Exception {
 
 		TicTacToe ticTac = new TicTacToe();
 		ticTac.addPlayer(2, 0);
 		ticTac.addPlayer(2, 0);
+
+	}
+
+	@Test
+	public void shouldReturn() {
+		Board board = new Board();
+		assertThat(board.validateuserInputData(2,2), CoreMatchers.is(true));
 
 	}
 

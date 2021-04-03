@@ -38,5 +38,13 @@ public class Board {
 	public boolean checkSelectedPositionIsEmpty(int row, int column) {
 		return board[row][column] == '\0';
 	}
+	public boolean validateuserInputData(int row, int column)
+	{
+		if(row>2||row<0||column>2||column<0) 
+		{
+			return false;
+		}
+		return true;
+	}
 
 }
