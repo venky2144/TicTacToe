@@ -53,14 +53,27 @@ public class TicTacToeTest {
 	@Test
 	public void shouldReturnTrueWhenThePlayerGivenCorrectInputData() {
 		Board board = new Board();
-		assertThat(board.validateuserInputData(2,0), CoreMatchers.is(true));
+		assertThat(board.validateuserInputData(2, 0), CoreMatchers.is(true));
 
 	}
-	
-	@Test(expected=Exception.class)
+
+	@Test(expected = Exception.class)
 	public void shouldReturnExceptionWhenThePlayerGivenInCorrectInputData() throws Exception {
 		ticTac.addPlayer(2, 0);
 		ticTac.addPlayer(3, 0);
-		
+
+	}
+
+	@Test
+	public void shouldReturnWinnerNameIfAnyHorizontalRowsIsSame() {
+		Board board = new Board();
+		board.addPlayer(0, 0);
+		board.addPlayer(2, 1);
+		board.addPlayer(0, 1);
+		board.addPlayer(1, 2);
+		board.addPlayer(0, 2);
+
+		assertThat(board.checkRowsForWin(), CoreMatchers.is(true));
+
 	}
 }
