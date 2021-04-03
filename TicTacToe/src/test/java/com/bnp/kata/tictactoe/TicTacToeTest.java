@@ -134,6 +134,16 @@ public class TicTacToeTest {
 		assertThat(ticTac.addPlayer(0, 2), CoreMatchers.is("X is Winner of the Game"));
 
 	}
+	
+	@Test
+	public void shouldDeclareWinnerIfAnyVerticalMatchOccurOnTheBoard() throws Exception {
+		ticTac.addPlayer(0, 0);
+		ticTac.addPlayer(1, 2);
+		ticTac.addPlayer(1, 0);
+		ticTac.addPlayer(0, 2);
+		assertThat(ticTac.addPlayer(2, 0), CoreMatchers.is("X is Winner of the Game"));
+
+	}
 
 }
 
