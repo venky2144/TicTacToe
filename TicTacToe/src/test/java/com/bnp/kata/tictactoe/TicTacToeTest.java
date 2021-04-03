@@ -41,5 +41,14 @@ public class TicTacToeTest {
 		Board board = new Board();
 		assertThat(board.checkSelectedPositionIsEmpty(0, 0), CoreMatchers.is(true));
 	}
+	
+	@Test(expected=Exception.class)
+	public void shouldThroughExceptionWhenUserTryToFillAlreadyFilledPosition() throws Exception {
+
+		TicTacToe ticTac = new TicTacToe();
+		ticTac.addPlayer(2, 0);
+		ticTac.addPlayer(2, 0);
+
+	}
 
 }

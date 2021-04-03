@@ -8,7 +8,11 @@ public class TicTacToe {
 		board = new Board();
 	}
 
-	public void addPlayer(int row, int column) {
+	public void addPlayer(int row, int column) throws Exception {
+		
+		if (!board.checkSelectedPositionIsEmpty(row, column)) {
+			throw new Exception("The given position is occupied by another player");
+		}
 		board.addPlayer(row, column);
 	}
 
