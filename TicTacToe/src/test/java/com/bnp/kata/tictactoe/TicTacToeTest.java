@@ -14,8 +14,8 @@ public class TicTacToeTest {
 	@Before
 	public void setUp() {
 		ticTac = new TicTacToe();
-		board=new Board();
-		
+		board = new Board();
+
 	}
 
 	@Test
@@ -52,7 +52,7 @@ public class TicTacToeTest {
 	@Test
 	public void shouldReturnTrueWhenThePlayerGivenCorrectInputData() {
 
-		assertThat(board.validateuserInputData(2, 0), CoreMatchers.is(true));
+		assertThat(board.validateUserInputData(2, 0), CoreMatchers.is(true));
 
 	}
 
@@ -108,7 +108,7 @@ public class TicTacToeTest {
 		assertThat(rightDiagonalCheck.checkDiagonalsForWin(), CoreMatchers.is(true));
 
 	}
-	
+
 	@Test
 	public void checkIsBoardFullyOccupied() {
 
@@ -124,27 +124,27 @@ public class TicTacToeTest {
 		assertThat(board.checkIfBoardFullyOccupied(), CoreMatchers.is(true));
 
 	}
-	
+
 	@Test
 	public void shouldDeclareWinnerIfAnyHorizontalMatchOccurOnTheBoard() throws Exception {
 		ticTac.addPlayer(0, 0);
 		ticTac.addPlayer(2, 1);
 		ticTac.addPlayer(0, 1);
 		ticTac.addPlayer(1, 2);
-		assertThat(ticTac.addPlayer(0, 2), CoreMatchers.is("X is Winner of the Game"));
+		assertThat(ticTac.addPlayer(0, 2), CoreMatchers.is("The Winner of the Game is X"));
 
 	}
-	
+
 	@Test
 	public void shouldDeclareWinnerIfAnyVerticalMatchOccurOnTheBoard() throws Exception {
 		ticTac.addPlayer(0, 0);
 		ticTac.addPlayer(1, 2);
 		ticTac.addPlayer(1, 0);
 		ticTac.addPlayer(0, 2);
-		assertThat(ticTac.addPlayer(2, 0), CoreMatchers.is("X is Winner of the Game"));
+		assertThat(ticTac.addPlayer(2, 0), CoreMatchers.is("The Winner of the Game is X"));
 
 	}
-	
+
 	@Test
 	public void shouldDeclareWinnerIfAnyDiagonalMatchOccurOnTheBoard() throws Exception {
 		ticTac.addPlayer(0, 0);
@@ -152,7 +152,7 @@ public class TicTacToeTest {
 		ticTac.addPlayer(0, 1);
 		ticTac.addPlayer(1, 1);
 		ticTac.addPlayer(1, 2);
-		assertThat(ticTac.addPlayer(0, 2), CoreMatchers.is("O is Winner of the Game"));
+		assertThat(ticTac.addPlayer(0, 2), CoreMatchers.is("The Winner of the Game is O"));
 
 	}
 
@@ -172,7 +172,6 @@ public class TicTacToeTest {
 
 	@Test
 	public void checkPrintBoard() throws Exception
-
 	{
 		board.addPlayer(1, 1);
 		board.addPlayer(0, 2);
@@ -180,5 +179,3 @@ public class TicTacToeTest {
 		board.printBoard();
 	}
 }
-
-

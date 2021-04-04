@@ -1,10 +1,13 @@
 package com.bnp.kata.tictactoe;
 
+import com.bnp.kata.tictactoe.exception.PositionNotAvailableException;
+import com.bnp.kata.tictactoe.exception.PositionOutOfRangeException;
+
 public class TicTacToe {
 
 	private static final String GAME_DRAW = "The Game is Draw";
 	private static final String GAME_CONTINOUS = "Game Continues";
-	private static final String GAME_WINNER = " is Winner of he Game";
+	private static final String GAME_WINNER = "The Winner of the Game is %s";
 	private static final String INPUT_DATA_EXCEPTION = "The given  input data is not in the range of 0 to 2 ";
 	private static final String POSITION_NOT_EMPTY_EXCEPTION = "The given position is occupied by another player";
 
@@ -14,20 +17,20 @@ public class TicTacToe {
 		board = new Board();
 	}
 
-	public String addPlayer(int row, int column) throws Exception {
+	public String addPlayer(int row, int column) throws PositionOutOfRangeException,PositionNotAvailableException {
 
-		if (!board.validateuserInputData(row, column)) {
-			throw new Exception(INPUT_DATA_EXCEPTION);
+		if (!board.validateUserInputData(row, column)) {
+			throw new PositionOutOfRangeException(INPUT_DATA_EXCEPTION);
 		}
 
 		if (!board.checkSelectedPositionIsEmpty(row, column)) {
-			throw new Exception(POSITION_NOT_EMPTY_EXCEPTION);
+			throw new PositionNotAvailableException(POSITION_NOT_EMPTY_EXCEPTION);
 		}
 		board.addPlayer(row, column);
 		String gameResult;
 		if (checkWinner()) {
 			String winner = String.valueOf(board.getCurrentPlayer());
-			gameResult = winner + GAME_WINNER;
+			gameResult = String.format(GAME_WINNER,winner);
 		} else if (isGameDraw()) {
 			gameResult = GAME_DRAW;
 		} else {

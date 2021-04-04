@@ -1,21 +1,25 @@
 package com.bnp.kata.tictactoe;
 
+import java.util.logging.Logger;
+
 public class Board {
 
 	private static final int THREE = 3;
-	private char[][] board;
+	private char[][] gameBoard;
 	private static final char FIRST_PLAYER = 'X';
 	private static final char SECOND_PLAYER = 'O';
 	private char currentPlayer;
+	private static final Logger logger = Logger.getLogger(Board.class.getName());
+
 
 	public Board() {
-		board = new char[THREE][THREE];
+		gameBoard = new char[THREE][THREE];
 	}
 
 	public void addPlayer(int row, int column) {
 
 		currentPlayer = getNextPlayer();
-		board[row][column] = currentPlayer;
+		gameBoard[row][column] = currentPlayer;
 	}
 
 	public char getNextPlayer() {
@@ -28,7 +32,7 @@ public class Board {
 	}
 
 	public char getPosition(int row, int column) {
-		return board[row][column];
+		return gameBoard[row][column];
 	}
 
 	public char getCurrentPlayer() {
@@ -36,23 +40,28 @@ public class Board {
 	}
 
 	public boolean checkSelectedPositionIsEmpty(int row, int column) {
-		return board[row][column] == '\0';
+		return gameBoard[row][column] == '\0';
 	}
 
-	public boolean validateuserInputData(int row, int column) {
+	public boolean validateUserInputData(int row, int column) {
+		boolean result;
 		if (row > 2 || row < 0 || column > 2 || column < 0) {
-			return false;
+			result = false;
+		} else {
+
+			result = true;
 		}
-		return true;
+		return result;
 	}
 
 	boolean checkRowsForWin() {
 
 		for (int row = 0; row < 3; row++) {
 
-			if ((board[row][0] != '\0') && (board[row][0] == board[row][1]) && (board[row][1] == board[row][2])) {
-				if (checkRowColumnContent(board[row][0], board[row][1], board[row][2]))
+			if ((gameBoard[row][0] != '\0') && (gameBoard[row][0] == gameBoard[row][1]) && (gameBoard[row][1] == gameBoard[row][2])) {
+				if (checkRowColumnContent(gameBoard[row][0], gameBoard[row][1], gameBoard[row][2])) {
 					return true;
+				}
 			}
 		}
 		return false;
@@ -63,9 +72,11 @@ public class Board {
 
 		for (int column = 0; column < 3; column++) {
 
-			if ((board[column][0] != '\0') && (board[0][column] == board[1][column]) && (board[1][column] == board[2][column])) {
-				if (checkRowColumnContent(board[0][column], board[1][column], board[2][column]))
+			if ((gameBoard[column][0] != '\0') && (gameBoard[0][column] == gameBoard[1][column])
+					&& (gameBoard[1][column] == gameBoard[2][column])) {
+				if (checkRowColumnContent(gameBoard[0][column], gameBoard[1][column], gameBoard[2][column])) {
 					return true;
+				}
 			}
 		}
 		return false;
@@ -73,7 +84,8 @@ public class Board {
 	}
 
 	public boolean checkDiagonalsForWin() {
-		return ((checkRowColumnContent(board[0][0], board[1][1], board[2][2]) == true)|| (checkRowColumnContent(board[0][2], board[1][1], board[2][0]) == true));
+		boolean isTrue=true;
+		return ((checkRowColumnContent(gameBoard[0][0], gameBoard[1][1], gameBoard[2][2]) == isTrue)|| (checkRowColumnContent(gameBoard[0][2], gameBoard[1][1], gameBoard[2][0]) == isTrue));
 	}
 
 	private boolean checkRowColumnContent(char c1, char c2, char c3) {
@@ -89,7 +101,7 @@ public class Board {
 
 			for (int j = 0; j < 3; j++) {
 
-				if (board[i][j] == '\0') {
+				if (gameBoard[i][j] == '\0') {
 
 					isFull = false;
 				}
@@ -104,7 +116,7 @@ public class Board {
 		for (int row = 0; row < THREE; row++) {
 			System.out.print("| ");
 			for (int column = 0; column < 3; column++) {
-				System.out.print(board[row][column] + " | ");
+				System.out.print(gameBoard[row][column] + " | ");
 			}
 			System.out.println();
 			System.out.println("-------------");
