@@ -1,4 +1,4 @@
-package com.bnp.kata.tictactoe.exception;
+package com.bnpp.kata.tictactoe.exception;
 
 public class PositionNotAvailableException extends Exception {
 

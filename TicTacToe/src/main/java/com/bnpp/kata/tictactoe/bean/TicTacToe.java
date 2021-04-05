@@ -1,8 +1,12 @@
-package com.bnp.kata.tictactoe;
+package com.bnpp.kata.tictactoe.bean;
 
-import com.bnp.kata.tictactoe.exception.PositionNotAvailableException;
-import com.bnp.kata.tictactoe.exception.PositionOutOfRangeException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import com.bnpp.kata.tictactoe.exception.PositionNotAvailableException;
+import com.bnpp.kata.tictactoe.exception.PositionOutOfRangeException;
+
+@Component
 public class TicTacToe {
 
 	private static final String GAME_DRAW = "The Game is Draw";
@@ -11,13 +15,14 @@ public class TicTacToe {
 	private static final String INPUT_DATA_EXCEPTION = "The given  input data is not in the range of 0 to 2 ";
 	private static final String POSITION_NOT_EMPTY_EXCEPTION = "The given position is occupied by another player";
 
+	@Autowired
 	Board board;
 
 	public TicTacToe() {
 		board = new Board();
 	}
 
-	public String addPlayer(int row, int column) throws PositionOutOfRangeException,PositionNotAvailableException {
+	public String addPlayer(int row, int column) throws PositionOutOfRangeException, PositionNotAvailableException {
 
 		if (!board.validateUserInputData(row, column)) {
 			throw new PositionOutOfRangeException(INPUT_DATA_EXCEPTION);
@@ -29,8 +34,9 @@ public class TicTacToe {
 		board.addPlayer(row, column);
 		String gameResult;
 		if (checkWinner()) {
-			String winner = String.valueOf(board.getCurrentPlayer());
-			gameResult = String.format(GAME_WINNER,winner);
+			// String winner = String.valueOf(board.getCurrentPlayer());
+			// gameResult = String.format(GAME_WINNER,winner);
+			gameResult = String.valueOf(board.getCurrentPlayer());
 		} else if (isGameDraw()) {
 			gameResult = GAME_DRAW;
 		} else {
